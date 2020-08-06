@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Distbug Calculator</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Start your project here-->
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <h1 class=>Distbug Calculator</h1>
+      <a class="help" data-toggle="popover-click" data-img="../img/Popover.png">
+        <i class="fas fa-question-circle" ></i>
+      </a>
+      
+    </div>
+
+    <div class="form-group color-border" style="margin-bottom:0">
+      <textarea class="form-control mx-auto scrollbar-primary" id="JumpInput" placeholder="[KZ] Player jumped..."></textarea>
+    </div>
+
+    <div class="row configurationSection">
+      <!-- Button-->
+      <div class="col">
+        <button type="button" class="btn btn-mdb-color calcularButton" onclick="CalcularDistbug()">Calcular</button>
+      </div>
+      <!-- Switch and Radios-->
+      <div class="col" style="border-left: 2px solid;border-color: #59698D;">
+        
+        <!-- Radio 128-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="defaultInline1" name="TickRateRadio" value=128 checked>
+          <label class="custom-control-label" for="defaultInline1">128</label>
+        </div>
+        
+        <!-- Radio 102-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="defaultInline2" name="TickRateRadio" value=102>
+          <label class="custom-control-label" for="defaultInline2">102</label>
+        </div>
+        
+        <!-- Radio 64-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="defaultInline3" name="TickRateRadio" value=64>
+          <label class="custom-control-label" for="defaultInline3">64</label>
+        </div>
+
+        <!-- Switch-->
+        <div class="custom-control custom-switch" style="margin-top: 15px;">
+          <input type="checkbox" class="custom-control-input" id="customSwitches">
+          <label class="custom-control-label" for="customSwitches">Strafe Stats</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-10">
+        <div class="container-fluid chat-background">
+          <div class="chat-container mx-auto scrollbar-primary" id="ChatContainer">
+            <!-- Creo un div animado aca adentro cada vez que apreto el boton-->
+          </div>
+          <div class="chat-separation"></div>
+          <div class="chat-input">
+            <span style="float:right;font-weight: 600;">SEND</span>
+            Say to all
+          </div>
+        </div>
+      </div>
+      <div class="col-1 d-flex align-items-end">
+        <a class="waves-effect waves-light mx-auto" href="https://www.youtube.com/c/Syuks" target="_blank">
+          <i class="fab fa-youtube social"></i>
+        </a>
+        <a class="waves-effect waves-light mx-auto" href="https://github.com/Syuks/DistbugCalculator" target="_blank">
+          <i class="fab fa-github social"></i>
+        </a>
+      </div>
+    </div>
+    
+  </div>
+  <!-- End your project here-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Custom js -->
+  <script type="text/javascript">
+
+    // popovers initialization - on click
+    $('[data-toggle="popover-click"]').popover({
+      html: true,
+      trigger: 'click',
+      placement: 'right',
+      content: function () { return '<img src="' + $(this).data('img') + '" />'; }
+    });
+
+
+    function CalcularDistbug(){
+      var originalJump = document.getElementById("JumpInput").value;
+      var chatContainer = document.getElementById("ChatContainer");
+      var strafeStatsToggle = $('#customSwitches').is(":checked");
+      var tickRate = $("input[type='radio'][name='TickRateRadio']:checked").val();
+      var ljBlock = "";
+      
+      var data = [];            //the whole thing separated in chunks
+      var coloredStrings = [];  //to apply different colors
+      var strafeStats = [];     //to add tabs and new lines
+
+      var distbugJump;          //to know the bugged jump value
+      var maxSpeed;
+      var tier;                 //to add class color in span
+
+      var prefix = originalJump.substring(0, 4); //lo mas importante es chequear si el formato es correcto:
+      var sufix = originalJump.slice(-1);
+      if (prefix == "[KZ]" && sufix == "%") { //si es asi, el formato es el correcto y empiezo a calcular
+        
+        data = originalJump.split(/[[#]/); //separando con [ y #, no puedo separar con ] porque rompe el regex, por lo que tengo que manipular cada chunk un poco aca abajo
+        data.shift(); //porque el primer elemento me quedaba uno vacio al empezar la string con el separador
+
+        if(data.length == 4) {  //si hay 4 despues del shift es porque saltó con !ljblock
+          ljBlock = ' [<span class="ljBlock">' + data[2].slice(0,-3) + '</span>]'; //tuve que sacarle 3 caracteres para que se una el ] con el final de "block"
+          data.splice(2,1); //lo saco de la array porque ya tengo todo lo que necesito en la string ljBlock
+        }
+
+        //La sección del final con data sobre cada strafe (lo separo primero para obtener el max speed)
+        strafeStats = data[2].replace(/\s+/g, " ").split(" ");  //primero transformo multiples espacios en uno solo, luego separo
+        maxSpeed = strafeStats[strafeStats.length-2];
+
+        //La primer parte colorida del mensaje
+        coloredStrings = data[0].split(" ");
+        distbugJump = BuggedJump(coloredStrings[3], maxSpeed, tickRate); //cambiar 370 por el codigo de strafeStats[] que sea el max speed, cuando lo encuentre.
+        tier = JumpTier (distbugJump);
+        coloredStrings[0] = '[<span class="dataSource">SY</span>]';
+        coloredStrings[1] = '<span class="' + tier + '">' + coloredStrings[1] + '</span>';
+        coloredStrings[2] = '<span class="secondary-' + tier + '">' + coloredStrings[2] + '</span>';
+        coloredStrings[3] = '<span class="' + tier + '">' + distbugJump + '</span>';
+        coloredStrings[4] = '<span class="secondary-' + tier + '">' + coloredStrings[4];
+        //coloredStrings[5] = coloredStrings[5]; redundante
+        coloredStrings[6] = coloredStrings[6] + '</span>';
+        coloredStrings[7] = '<span class="' + tier + '">' + coloredStrings[7] + '</span>';
+        data[0] = coloredStrings.join(" ");
+
+        //La segunda parte aburrida de los datos
+        data[1] = "[" + data[1];
+        
+        var strafeStatsTable = "";
+
+        if(strafeStatsToggle){
+          strafeStats[0] = "#.";
+
+          for (i = 0; i < strafeStats.length; i++) {
+            strafeStats[i] = "<td>" + strafeStats[i] + "</td>";
+          }
+          for (i = 5; i < strafeStats.length-6; i+=6) {
+            strafeStats[i] = strafeStats[i] + "</tr><tr>";
+          }
+          strafeStatsTable = '<table><tr>' + strafeStats.join(" ") + '</tr></table>';
+        }
+
+        $( ".chat-container" ).append( '<div class="animated fadeIn faster">' + data[0] + data[1] + ljBlock + strafeStatsTable + '</div>' );
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return;
+      }
+
+      else if(prefix == "[GC]"){  //si el prefijo no es kz, algo mal hay. Si dice gc, le explico como solucionarlo
+        $( ".chat-container" ).append( '<div class="animated fadeIn faster" style="color:#ff4040;">Pegaste las estadísticas del !distbug. Para un mejor cálculo, copia en consola las que tienen el prefijo "[KZ]", no "[GC]".</div>' );
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return;
+      }
+
+      else {  //y por último, si dice cualquier otra cosa, le explico como se usa
+        $( ".chat-container" ).append( '<div class="animated fadeIn faster" style="color:#ff4040;">Formato desconocido. Por favor copia en consola los datos del salto con prefijo "KZ".</div>' );
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return;
+      }
+
+
+    }
+
+    function BuggedJump (originalJump, maxSpeed, serverTick){
+      return (parseFloat(originalJump) + (maxSpeed/serverTick)).toFixed(4);
+    }
+
+    function JumpTier (buggedJump){
+      if (buggedJump<265){
+        return "meh";
+      }
+      else if (buggedJump<270){
+        return "perfect";
+      }
+      else if (buggedJump<275){
+        return "impressive";
+      }
+      else if (buggedJump<285){
+        return "godlike";
+      }
+      else {
+        return "ownage";
+      }
+    }
+
+  </script>
+
+</body>
+</html>

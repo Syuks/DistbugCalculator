@@ -1,0 +1,178 @@
+body, html {
+    height: 100%;
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+    background-image: url("../img/background.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-size:1vw;
+}
+h1{
+    padding-top:2%;
+    padding-bottom:1%;
+    text-align: center;
+    font-size:3vw;
+}
+
+/*Input*/
+
+.color-border textarea {
+    width: 40vw;
+    height: 20vh;
+    border: 2px solid #59698D;
+    background-color: transparent;
+    color:white;
+    resize: none;
+}
+.color-border .form-control:focus {
+    border: 2px solid #59698D;
+    box-shadow: 0 0 0 0.2rem rgba(57, 66, 84, .50);
+    background-color: transparent;
+    color:white;
+}
+
+/*Output*/
+
+.chat-background{
+    width: 40vw;
+    background-color:rgba(0, 0, 0, .35);
+    padding:0.5%;
+    
+    text-align:left;
+    height: 50vh;
+}
+
+.chat-container {
+    height: 86%;
+    background-color: rgba(0, 0, 0, .60);
+    color:white;
+    padding-left:1.8%;
+    padding-top: 1%;
+    overflow-y: auto; /*que aparezca la scrollbar cuando sea necesario*/
+    font-weight: 600;
+}
+.chat-container::selection {
+    background: #85b7d8;
+}
+
+.chat-separation{
+    height:2%;
+    background-color:transparent;
+}
+
+.chat-input{
+    height: 12%;
+    background-color: rgba(0, 0, 0, .60);
+    color:#3a3a3a;
+    font-size:1.2vw;
+    padding-top:1.8%; /*YIKES, no puede ser que no pude alinear verticalmente esto jaja*/
+    padding-left:2%;
+    padding-right:4%;
+    user-select: none;
+}
+
+/*Scrollbars*/
+
+.scrollbar-primary::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+} 
+.scrollbar-primary::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #6d6d6d;
+    border-radius: 0 !important;
+}
+.scrollbar-primary {
+    scrollbar-color: #6d6d6d #F5F5F5;
+}
+
+/*Buttons*/
+
+.configurationSection { /*The whole row*/
+    width: 40vw;
+    margin-top:1.5vh;
+    margin-bottom:1.5vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calcularButton{
+    float: right;
+}
+
+/*Strafes data talbe*/
+
+td{
+    font-size: 1vw !important;
+    font-weight: 600;
+}
+table tr td{
+    padding-right: 30px;
+    table-layout: inherit;
+}
+
+/*Popover*/
+
+.help{      /*The icon*/
+    margin-left: 1.5vw;
+    margin-top:6.3vh;
+    height: 1vh;
+}
+.popover{   /*The container, the background*/
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+    background-color: rgba(0,0,0,0.25);
+    border-radius: 0;
+}
+.popover .arrow:after {
+    border-right-color: rgba(0,0,0,0.25);
+}
+
+/*Social Icons*/
+
+.social{
+    font-size: 1.7vw;
+    color:#59698D;
+}
+
+/*Primary Color Tiers*/
+
+.meh{
+    color:white;
+}
+.perfect{
+    color:#5d96d6;
+}
+.impressive{
+    color:#3ffc3f;
+}
+.godlike{
+    color:#ff0000;
+}
+.ownage{
+    color:#e4ae39;
+}
+.dataSource {
+    color:#c7fd9e;
+}
+.ljBlock {
+    color: #ede47a;
+}
+
+/*Secondary Color Tiers*/
+
+.secondary-meh{
+    color:white;
+}
+.secondary-perfect{
+    color:#b0c3d9;
+}
+.secondary-impressive{
+    color:#bfff90;
+}
+.secondary-godlike{
+    color:#ff4040;
+}
+.secondary-ownage{
+    color:#ede47a;
+}
