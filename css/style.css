@@ -93,13 +93,11 @@ body, html {
 
 /*Strafes data talbe*/
 
-td{
-    font-size:20px !important;
-    font-weight: 600;
-}
 table tr td{
     padding-right: 27px;
     table-layout: inherit;
+    font-size:20px !important;
+    font-weight: 600;
 }
 
 /*Scrollbars*/
@@ -138,6 +136,46 @@ table tr td{
     margin-right:10px;
     font-size: 30px;
     color:#59698D;
+}
+
+/*Media Queries*/
+
+@media(max-width: 480px) {
+    .header{
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+        height:5vh;
+    }
+    .h1 {
+        font-size: 35px;
+    }
+    .configuration{
+        font-size: 14px;
+        height:12vh;
+    }
+    .btn{
+        font-size: 14px;
+        margin: 0;
+    }
+    .custom-options{
+        width: 80%;
+        padding-left:30px;
+        border-left: 2px solid;
+        border-color: #59698D;
+    }
+    .chat-container{
+        font-size: 15px;
+    }
+    table tr td{
+        font-size:15px !important;
+        padding-right: 20px;
+    }
+    .color-border textarea {
+        font-size:15px;
+    }
+    .color-border .form-control:focus {
+        font-size:15px;
+    }
 }
 
 /*Primary Color Tiers*/
