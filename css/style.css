@@ -2,6 +2,7 @@ body, html {
     color: white;
     font-family: 'Rajdhani', sans-serif;
     background-image: url("../img/background.gif");
+    background-color: #222429;
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-size:18px;
