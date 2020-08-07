@@ -9,7 +9,7 @@
   <link rel="icon" href="img/Logo.ico" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!-- Google Fonts Roboto -->
+  <!-- Google Fonts Rajdhani -->
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -20,77 +20,134 @@
 </head>
 <body>
 
-  <!-- Start your project here-->
+  <!-- Start your project here-->  
   <div class="container-fluid">
-    <div class="row justify-content-center">
-      <h1 class=>Distbug Calculator</h1>
-      <a class="help" data-toggle="popover-click" data-img="../img/popover-console.gif">
-        <i class="fas fa-question-circle" ></i>
-      </a>
+    <div class="row">
+
+      <!-- Left Column-->  
+      <div class="col-sm">
+        
+      </div>
+
+      <!-- Center Column-->  
+      <div class="col-lg-5">
+
+        <!-- Title and help--> 
+        <div class="row header">
+
+          <!-- Title--> 
+          <div class="col d-flex align-items-center justify-content-center">
+            <span class="h1">
+              Distbug Calculator
+            </span>
+            <a tabindex="0" class="help" data-toggle="popover" data-img="../img/popover-console.gif">
+              <i class="fas fa-question-circle"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Textarea--> 
+        <div class="row">
+          <div class="col" style="padding: 0;">
+            <div class="form-group color-border" style="margin-bottom:0;">  
+              <textarea class="form-control scrollbar-primary" id="JumpInput" placeholder="[KZ] Player jumped..." style="height:20vh"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons, Switches and Radios--> 
+        <div class="row d-flex align-items-center configuration">
+
+          <!-- Button-->
+          <div class="col text-right">
+            <button type="button" class="btn btn-mdb-color" onclick="CalcularDistbug()">Calcular</button>
+          </div>
+
+          <!-- Configuration-->
+          <div class="col custom-options">
+
+            <!-- Radio Buttons-->
+            <div class="row d-flex align-items-center" style="height: 50%;">
+
+                <!-- Radio 128-->
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline1" name="TickRateRadio" value=128 checked>
+                <label class="custom-control-label" for="defaultInline1">128</label>
+              </div>
+
+              <!-- Radio 102-->
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline2" name="TickRateRadio" value=102>
+                <label class="custom-control-label" for="defaultInline2">102</label>
+              </div>
+
+              <!-- Radio 64-->
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline3" name="TickRateRadio" value=64>
+                <label class="custom-control-label" for="defaultInline3">64</label>
+              </div>
+            </div>
+
+            <!-- Switch-->
+            <div class="row d-flex align-items-center" style="height: 50%;">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitches">
+                <label class="custom-control-label" for="customSwitches">Strafe Stats</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat--> 
+        <div class="row" style="background-color: rgba(0,0,0,.35); height: 50vh;padding: 1%;">
+          <div class="col" style="height: 100%;">
+
+            <!-- Chat Messages--> 
+            <div class="row" style="background-color: rgba(0,0,0,.60); height: 86%;">
+              <div class="col chat-container scrollbar-primary" id="ChatContainer">
+                <!-- Creo un div animado aca adentro cada vez que apreto el boton-->
+              </div>
+            </div>
+
+            <!-- Chat Divisor-->
+            <div class="row" style="background-color: transparent; height: 2%;">
+              <div class="col">
+                
+              </div>
+            </div>
+
+            <!-- Chat Input-->
+            <div class="row chat-input">
+              
+              <div class="col d-flex align-items-center">
+                Say to All
+              </div>
+
+              <div class="col d-flex align-items-center justify-content-end send-button">
+                SEND
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column-->  
+      <div class="col-sm">
+
+        <div class="d-flex justify-content-end h-100 align-items-end">
+
+            <a class="waves-effect waves-light" href="https://www.youtube.com/c/Syuks" target="_blank">
+              <i class="fab fa-youtube social"></i>
+            </a>
+            <a class="waves-effect waves-light" href="https://github.com/Syuks/DistbugCalculator" target="_blank">
+              <i class="fab fa-github social"></i>
+            </a>
+            
+        </div> 
       
-    </div>
-
-    <div class="form-group color-border" style="margin-bottom:0">
-      <textarea class="form-control mx-auto scrollbar-primary" id="JumpInput" placeholder="[KZ] Player jumped..."></textarea>
-    </div>
-
-    <div class="row configurationSection">
-      <!-- Button-->
-      <div class="col">
-        <button type="button" class="btn btn-mdb-color calcularButton" onclick="CalcularDistbug()">Calcular</button>
-      </div>
-      <!-- Switch and Radios-->
-      <div class="col" style="border-left: 2px solid;border-color: #59698D;">
-        
-        <!-- Radio 128-->
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="defaultInline1" name="TickRateRadio" value=128 checked>
-          <label class="custom-control-label" for="defaultInline1">128</label>
-        </div>
-        
-        <!-- Radio 102-->
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="defaultInline2" name="TickRateRadio" value=102>
-          <label class="custom-control-label" for="defaultInline2">102</label>
-        </div>
-        
-        <!-- Radio 64-->
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="defaultInline3" name="TickRateRadio" value=64>
-          <label class="custom-control-label" for="defaultInline3">64</label>
-        </div>
-
-        <!-- Switch-->
-        <div class="custom-control custom-switch" style="margin-top: 15px;">
-          <input type="checkbox" class="custom-control-input" id="customSwitches">
-          <label class="custom-control-label" for="customSwitches">Strafe Stats</label>
-        </div>
       </div>
     </div>
-
-    <div class="row justify-content-end">
-      <div class="col-10">
-        <div class="container-fluid chat-background">
-          <div class="chat-container mx-auto scrollbar-primary" id="ChatContainer">
-            <!-- Creo un div animado aca adentro cada vez que apreto el boton-->
-          </div>
-          <div class="chat-separation"></div>
-          <div class="chat-input">
-            <span style="float:right;font-weight: 600;">SEND</span>
-            Say to all
-          </div>
-        </div>
-      </div>
-      <div class="col-1 d-flex align-items-end">
-        <a class="waves-effect waves-light mx-auto" href="https://www.youtube.com/c/Syuks" target="_blank">
-          <i class="fab fa-youtube social"></i>
-        </a>
-        <a class="waves-effect waves-light mx-auto" href="https://github.com/Syuks/DistbugCalculator" target="_blank">
-          <i class="fab fa-github social"></i>
-        </a>
-      </div>
-    </div>
-    
   </div>
   <!-- End your project here-->
 
@@ -104,15 +161,14 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom js -->
   <script type="text/javascript">
-
+  
     // popovers initialization - on click
-    $('[data-toggle="popover-click"]').popover({
+    $('[data-toggle="popover"]').popover({
       html: true,
-      trigger: 'click',
+      trigger: 'hover',
       placement: 'right',
       content: function () { return '<img src="' + $(this).data('img') + '" />'; }
     });
-
 
     function CalcularDistbug(){
       var originalJump = document.getElementById("JumpInput").value;
@@ -193,7 +249,6 @@
         return;
       }
 
-
     }
 
     function BuggedJump (originalJump, maxSpeed, serverTick){
@@ -217,7 +272,7 @@
         return "ownage";
       }
     }
-
+  
   </script>
 
 </body>

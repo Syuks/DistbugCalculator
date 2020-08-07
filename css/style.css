@@ -1,74 +1,104 @@
 body, html {
-    height: 100%;
     color: white;
     font-family: 'Rajdhani', sans-serif;
     background-image: url("../img/background.gif");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-size:1vw;
+    font-size:18px;
 }
-h1{
-    padding-top:2%;
-    padding-bottom:1%;
-    text-align: center;
-    font-size:3vw;
+.header{
+    margin-top: 3.5vh;
+    margin-bottom: 3.5vh;
+    height:7vh;
+}
+.h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 30px;
+    font-size:50px;
 }
 
-/*Input*/
+/*Textarea*/
 
 .color-border textarea {
-    width: 40vw;
-    height: 20vh;
     border: 2px solid #59698D;
     background-color: transparent;
-    color:white;
     resize: none;
+    color: white;
+    font-size:20px;
 }
 .color-border .form-control:focus {
     border: 2px solid #59698D;
     box-shadow: 0 0 0 0.2rem rgba(57, 66, 84, .50);
     background-color: transparent;
-    color:white;
+    color: white;
+    font-size:20px;
 }
 
-/*Output*/
+/*Configuration and Button Section*/
 
-.chat-background{
-    width: 40vw;
-    background-color:rgba(0, 0, 0, .35);
-    padding:0.5%;
+.configuration{
+    margin-right:0;
+    margin-left:0;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    height:7vh;
+    font-size: 20px;
+}
+.btn{
+    margin-top:0;
+    margin-bottom:0;
+    margin-left:0;
+    margin-right:20px;
+    font-size: 18px;
     
-    text-align:left;
-    height: 50vh;
 }
+.custom-options{
+    height: 100%;
+    padding-left:45px;
+    border-left: 2px solid;
+    border-color: #59698D;
+}
+
+/*Chat Section*/
 
 .chat-container {
-    height: 86%;
-    background-color: rgba(0, 0, 0, .60);
-    color:white;
+    height:100%;    /*si o si para que se genere el overflow*/
     padding-left:1.8%;
     padding-top: 1%;
+    padding-bottom: 1%;
     overflow-y: auto; /*que aparezca la scrollbar cuando sea necesario*/
+    overflow-x: hidden;
     font-weight: 600;
+    font-size:20px;
 }
 .chat-container::selection {
     background: #85b7d8;
 }
 
-.chat-separation{
-    height:2%;
-    background-color:transparent;
-}
-
 .chat-input{
     height: 12%;
-    background-color: rgba(0, 0, 0, .60);
+    background-color: rgba(0,0,0,.60);
+    font-size:22px;
     color:#3a3a3a;
-    font-size:1.2vw;
-    padding-top:1.8%; /*YIKES, no puede ser que no pude alinear verticalmente esto jaja*/
-    padding-left:2%;
-    padding-right:4%;
     user-select: none;
+}
+.send-button{
+    margin-right: 1vw;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+/*Strafes data talbe*/
+
+td{
+    font-size:20px !important;
+    font-weight: 600;
+}
+table tr td{
+    padding-right: 27px;
+    table-layout: inherit;
 }
 
 /*Scrollbars*/
@@ -87,38 +117,8 @@ h1{
     scrollbar-color: #6d6d6d #F5F5F5;
 }
 
-/*Buttons*/
-
-.configurationSection { /*The whole row*/
-    width: 40vw;
-    margin-top:1.5vh;
-    margin-bottom:1.5vh;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.calcularButton{
-    float: right;
-}
-
-/*Strafes data talbe*/
-
-td{
-    font-size: 1vw !important;
-    font-weight: 600;
-}
-table tr td{
-    padding-right: 30px;
-    table-layout: inherit;
-}
-
 /*Popover*/
 
-.help{      /*The icon*/
-    margin-left: 1.5vw;
-    margin-top:6.3vh;
-    height: 1vh;
-}
 .popover{   /*The container, the background*/
     max-width: 100%; /* Max Width of the popover (depending on the container!) */
     background-color: rgba(0,0,0,0.25);
@@ -131,7 +131,11 @@ table tr td{
 /*Social Icons*/
 
 .social{
-    font-size: 1.7vw;
+    margin-bottom:0;
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:10px;
+    font-size: 30px;
     color:#59698D;
 }
 
