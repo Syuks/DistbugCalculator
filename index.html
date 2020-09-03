@@ -202,17 +202,21 @@
         maxSpeed = strafeStats[strafeStats.length-2];
 
         //La primer parte colorida del mensaje
-        coloredStrings = data[0].split(" ");
-        distbugJump = BuggedJump(coloredStrings[3], maxSpeed, tickRate); //cambiar 370 por el codigo de strafeStats[] que sea el max speed, cuando lo encuentre.
+        playername = data[0].substring(4, data[0].indexOf(' jumped ')); //por las dudas tenga un espacio el nombre, lo agarro primero y luego si separo por -> " "
+        restOfString = data[0].substring(data[0].indexOf(playername) + playername.length + 1, data[0].length ); //esto es el resto de la data despues del nombre, esto es lo que voy a separar por -> " "
+        partsOfString = restOfString.split(" ");
+
+        var coloredStrings;
+        distbugJump = BuggedJump(partsOfString[1], maxSpeed, tickRate); //cambiar 370 por el codigo de strafeStats[] que sea el max speed, cuando lo encuentre.
         tier = JumpTier (distbugJump);
         coloredStrings[0] = '[<span class="dataSource">SY</span>]';
-        coloredStrings[1] = '<span class="' + tier + '">' + coloredStrings[1] + '</span>';
-        coloredStrings[2] = '<span class="secondary-' + tier + '">' + coloredStrings[2] + '</span>';
+        coloredStrings[1] = '<span class="' + tier + '">' + playername + '</span>';
+        coloredStrings[2] = '<span class="secondary-' + tier + '">' + partsOfString[0] + '</span>';
         coloredStrings[3] = '<span class="' + tier + '">' + distbugJump + '</span>';
-        coloredStrings[4] = '<span class="secondary-' + tier + '">' + coloredStrings[4];
-        //coloredStrings[5] = coloredStrings[5]; redundante
-        coloredStrings[6] = coloredStrings[6] + '</span>';
-        coloredStrings[7] = '<span class="' + tier + '">' + coloredStrings[7] + '</span>';
+        coloredStrings[4] = '<span class="secondary-' + tier + '">' + partsOfString[2];
+        //coloredStrings[5] = partsOfString[3]; redundante
+        coloredStrings[6] = partsOfString[4] + '</span>';
+        coloredStrings[7] = '<span class="' + tier + '">' + partsOfString[5] + '</span>';
         data[0] = coloredStrings.join(" ");
 
         //La segunda parte aburrida de los datos
