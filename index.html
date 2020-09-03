@@ -6,7 +6,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Distbug Calculator</title>
   <!-- MDB icon -->
-  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <link rel="icon" href="img/Logo.png" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Google Fonts Rajdhani -->
@@ -60,7 +60,7 @@
 
           <!-- Button-->
           <div class="col text-right">
-            <button type="button" class="btn btn-mdb-color" onclick="CalcularDistbug()">Calcular</button>
+            <button type="button" class="btn btn-mdb-color" onclick="CalcularDistbug()">Calculate</button>
           </div>
 
           <!-- Configuration-->
@@ -238,13 +238,13 @@
       }
 
       else if(prefix == "[GC]"){  //si el prefijo no es kz, algo mal hay. Si dice gc, le explico como solucionarlo
-        $( ".chat-container" ).append( '<div class="animated fadeIn faster" style="color:#ff4040;">Pegaste las estadísticas del !distbug. Para un mejor cálculo, copia en consola las que tienen el prefijo "[KZ]", no "[GC]".</div>' );
+        $( ".chat-container" ).append( '<div class="animated fadeIn faster" style="color:#ff4040;">You have pasted !distbug stats. For a more precise calculation, please paste the stats printed in console with prefix "KZ", not "[GC]".</div>' );
         chatContainer.scrollTop = chatContainer.scrollHeight;
         return;
       }
 
       else {  //y por último, si dice cualquier otra cosa, le explico como se usa
-        $( ".chat-container" ).append( '<div class="animated fadeIn faster" style="color:#ff4040;">Formato desconocido. Por favor copia en consola los datos del salto con prefijo "KZ".</div>' );
+        $( ".chat-container" ).append( '<div class="animated fadeIn faster" style="color:#ff4040;">Unknown format. Please, paste the jump stats printed in console with prefix "KZ".</div>' );
         chatContainer.scrollTop = chatContainer.scrollHeight;
         return;
       }
